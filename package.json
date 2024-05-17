@@ -8,12 +8,18 @@
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "@types/node": "^20.12.12",
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "^9.0.11"
+    "husky": "^9.0.11",
+    "json": "^11.0.0",
+    "tsx": "^4.10.4",
+    "typescript": "^5.4.5"
   },
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "build": "tsc",
+    "dev": "tsx watch src/server.ts"
   },
   "config": {
     "commitizen": {
