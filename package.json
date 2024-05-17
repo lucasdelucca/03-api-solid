@@ -4,5 +4,11 @@
   "main": "index.js",
   "author": "Lucas de Lucca <llucca54@gmail.com>",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "husky": "^9.0.11"
+  },
+  "scripts": {
+    "prepare": "husky"
+  }
 }
