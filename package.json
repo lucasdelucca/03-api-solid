@@ -13,7 +13,8 @@
     "lint": "eslint --fix src",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
   },
   "config": {
     "commitizen": {
@@ -30,6 +31,7 @@
     "@types/bcryptjs": "2.4.6",
     "@types/node": "20.12.12",
     "@vitest/coverage-v8": "1.6.0",
+    "@vitest/ui": "1.6.0",
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
     "husky": "9.0.11",
