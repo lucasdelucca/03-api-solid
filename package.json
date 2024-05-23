@@ -16,7 +16,8 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "test:e2e": "vitest run --dir src/http",
-    "test:e2e:watch": "vitest --dir src/http"
+    "test:e2e:watch": "vitest --dir src/http",
+    "test:e2e:watch:inspect": "vitest --inspect --no-file-parallelism --dir src/http"
   },
   "config": {
     "commitizen": {
