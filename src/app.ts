@@ -13,9 +13,17 @@ app.register(fastifyCookie)
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
-  cookie: {
-    cookieName: 'refreshToken',
-    signed: false,
+  verify: {
+    extractToken: (request) => {
+      if (request.url === '/token/refresh') {
+        return request.cookies && request.cookies.refreshToken
+      } else {
+        return (
+          request.headers.authorization &&
+          request.headers.authorization.split(' ')[1]
+        )
+      }
+    },
   },
   sign: {
     expiresIn: '10m',
