@@ -14,6 +14,8 @@ function generateDatabaseURL(schema: string) {
   const url = new URL(process.env.DATABASE_URL)
   url.searchParams.set('schema', schema)
 
+  console.log(url)
+
   return url.toString()
 }
 
@@ -25,7 +27,7 @@ export default <Environment>{
 
     process.env.DATABASE_URL = databaseUrl
 
-    execSync('npx prisma migrate deploy')
+    execSync('yarn prisma migrate deploy')
 
     return {
       async teardown() {
