@@ -1,5 +1,15 @@
+# Dependencies
 node_modules 
-conventional-script.sh
+
+# Build
 dist
+
+# Environment
 .env
+.vscode
+
+# Tests
 coverage
+
+# Miscelaneous
+conventional-script.sh
