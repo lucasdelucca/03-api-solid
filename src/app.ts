@@ -1,22 +1,37 @@
+import fastifyJwt from '@fastify/jwt'
+import fastifyCookie from '@fastify/cookie'
 import fastify from 'fastify'
 import { ZodError } from 'zod'
 import { env } from './env'
-import fastifyJwt from '@fastify/jwt'
-import { userRoutes } from './http/controllers/users/routes'
-import { gymRoutes } from './http/controllers/gyms/routes'
 import { checkInRoutes } from './http/controllers/check-ins/routes'
+import { gymRoutes } from './http/controllers/gyms/routes'
+import { userRoutes } from './http/controllers/users/routes'
 
 export const app = fastify()
+
+app.register(fastifyCookie)
+
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+  cookie: {
+    cookieName: 'refreshToken',
+    signed: false,
+  },
+  sign: {
+    expiresIn: '10m',
+  },
+})
 
 app.register(userRoutes)
 app.register(gymRoutes)
 app.register(checkInRoutes)
 
-app.register(fastifyJwt, {
-  secret: env.JWT_SECRET,
-})
-
 app.setErrorHandler((error, _, reply) => {
+  if (error.code === 'FST_JWT_NO_AUTHORIZATION_IN_COOKIE') {
+    return reply
+      .status(401)
+      .send({ message: 'invalid jwt token', code: error.code })
+  }
   if (error instanceof ZodError) {
     return reply
       .status(400)
